@@ -58,7 +58,29 @@ public class TestCompositeSchema {
 		impl4.pai = impl3;
 		CompositePatternHelper<CompositePatternImpl> helper = new CompositePatternHelper<CompositePatternImpl>(impl1);
 		Collection<CompositePatternImpl> result = helper.getAllChildren();
-		System.out.println(result);
+		Assert.assertEquals(3,result.size());
+	}
+	
+	@Test
+	public void testSelectLeafs(){
+		Collection<CompositePatternImpl> list = new ArrayList<CompositePatternImpl>();
+		CompositePatternImpl impl1 = new CompositePatternImpl("impl1");
+		CompositePatternImpl impl2 = new CompositePatternImpl("impl2");
+		CompositePatternImpl impl3 = new CompositePatternImpl("impl3");		
+		CompositePatternImpl impl4 = new CompositePatternImpl("impl4");
+		list.add(impl1);
+		list.add(impl2);
+		list.add(impl3);
+		list.add(impl4);
+		impl1.filhos.add(impl2);		
+		impl2.filhos.add(impl3);
+		impl3.filhos.add(impl4);
+		impl2.pai = impl1;
+		impl3.pai = impl2;
+		impl4.pai = impl3;
+		CompositePatternHelper<CompositePatternImpl> helper = new CompositePatternHelper<CompositePatternImpl>(impl1);
+		Collection<CompositePatternImpl> result = helper.selectLeafs(list);
+		Assert.assertEquals(1, result.size());
 	}
 	
 	private class CompositePatternImpl implements CompositePattern<CompositePatternImpl>{

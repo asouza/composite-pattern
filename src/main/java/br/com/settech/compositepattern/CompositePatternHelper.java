@@ -2,6 +2,7 @@ package br.com.settech.compositepattern;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 
 /**
  * Class that helps with usual methods when we have a composite pattern
@@ -105,5 +106,21 @@ public class CompositePatternHelper<T extends CompositePattern> {
 			}						
 		}
 	}
+	
+	/**
+	 * select the leafs inside the list
+	 * @param list
+	 * @return Collection<T> with leafs
+	 */
+	public Collection<T> selectLeafs(Collection<T> list){
+		Collection<T> leafs = new LinkedHashSet<T>();
+		for(T compositePattern : list){
+			if(compositePattern.getChildren().size()==0){
+				leafs.add(compositePattern);
+			}
+		}
+		return leafs;
+	}
+
 
 }
