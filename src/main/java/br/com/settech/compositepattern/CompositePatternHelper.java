@@ -15,9 +15,12 @@ public class CompositePatternHelper<T extends CompositePattern> {
 
 	private T target;
 
-	public CompositePatternHelper(T target) {
-		super();
+	public CompositePatternHelper(T target) {		
 		this.target = target;
+	}
+	
+	public CompositePatternHelper(){
+		
 	}
 
 	/**
@@ -28,6 +31,7 @@ public class CompositePatternHelper<T extends CompositePattern> {
 	 * @return possible fathers
 	 */
 	public Collection<T> selectPossibleFathersIn(Collection<T> candidates) {
+		isTargetNull();
 		Collection<T> fathers = new ArrayList<T>();
 		for (T candidate : candidates) {
 			if (!candidate.equals(target)) {
@@ -44,6 +48,13 @@ public class CompositePatternHelper<T extends CompositePattern> {
 		return fathers;
 	}
 
+	private void isTargetNull() {
+		if(target==null){
+			throw new IllegalStateException("You can't call this method with null target");
+		}
+		
+	}
+
 	/**
 	 * If a target has a father and grandfather, the return is a list ordered
 	 * from grandfather to father...
@@ -52,6 +63,7 @@ public class CompositePatternHelper<T extends CompositePattern> {
 	 * @return collection with higher relatives
 	 */
 	public Collection<T> getRelativesList() {
+		isTargetNull();
 		Collection<T> relatives = new ArrayList<T>();
 		getRelativesList((T) target.getFather(), relatives);
 		return relatives;
@@ -89,7 +101,7 @@ public class CompositePatternHelper<T extends CompositePattern> {
 	 * @return
 	 */
 	public Collection<T> getAllChildren() {
-		// TODO Auto-generated method stub
+		isTargetNull();
 		Collection<T> children = new ArrayList<T>();
 		getAllChildren(target,children);
 		return children;

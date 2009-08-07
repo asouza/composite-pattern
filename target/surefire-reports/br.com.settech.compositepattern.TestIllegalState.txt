@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: br.com.settech.compositepattern.TestCompositeSchema
+Test set: br.com.settech.compositepattern.TestIllegalState
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.213 sec
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.064 sec
